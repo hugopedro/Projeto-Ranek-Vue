@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 form {
   max-width: 600px;
   margin: 30px auto 60px auto;
@@ -50,6 +50,4 @@ form {
   right: 0px;
   box-shadow: none;
 }
-</style>
-
 </style>
