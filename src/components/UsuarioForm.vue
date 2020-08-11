@@ -29,7 +29,8 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+/*Se não por style SCOPED vai alterar o design de outros buttons, e aí vai bugar tudo então é muito importante*/
 form {
   display: grid;
   grid-template-columns: 80px 1fr;
