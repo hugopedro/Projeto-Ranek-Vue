@@ -31,7 +31,11 @@ export default {
     };
   },
   methods: {
-    logar() {},
+    logar() {
+      this.$store.dispatch("getUsuario", this.login.email);
+      //apartir do momento que o usuário existe pode mudar o router para usuário:, daí ao logar ja cai na pagina dele na hora
+      this.$router.push({ name: "usuario" });
+    },
   },
 };
 </script>
