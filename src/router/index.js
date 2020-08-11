@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Produto from "../views/Produto.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,14 @@ const routes = [
     path: "/produto/:id",
     name: "produto",
     component: Produto,
+    props: true,
+  },
+  {
+    // Criando uma página nova!
+    // Já que vai passar o id tem que ter props, para passá-lo como propiedade
+    path: "/login",
+    name: "login",
+    component: Login,
     props: true,
   },
 ];
