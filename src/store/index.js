@@ -22,6 +22,7 @@ export default new Vuex.Store({
       cidade: "",
       estado: "",
     },
+    usuario_produtos: null,
   },
   mutations: {
     UPDATE_LOGIN(state, payload) {
@@ -31,8 +32,21 @@ export default new Vuex.Store({
     UPDATE_USUARIO(state, payload) {
       state.usuario = Object.assign(state.usuario, payload); //object.assign combina objetos, que são esses 2
     },
+    UPDATE_USUARIO_PRODUTOS(state, payload) {
+      state.usuario_produtos = payload; //quando criar um produto novo automaticamente será adicionado a lista
+    },
+    ADD_USUARIO_PRODUTOS(state, payload) {
+      state.usuario_produtos.unshift(payload); // o unshift manda pro inicio do array, os mais recentes sempre serão os primeiros
+    },
   },
   actions: {
+    getUsuarioProdutos(context) {
+      api
+        .get(`/produto?usuario_id=${context.state.usuario.id}`)
+        .then((response) => {
+          context.commit("UPDATE_USUARIO_PRODUTOS", response.data);
+        });
+    },
     //return api para poder usar o .then em outros lugares, exemplo login criar no metodo criarUsuario
     getUsuario(context, payload) {
       return api.get(`/usuario/${payload}`).then((response) => {
