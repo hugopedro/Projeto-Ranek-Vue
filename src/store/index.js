@@ -33,11 +33,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    //return api para poder usar o .then em outros lugares, exemplo login criar no metodo criarUsuario
     getUsuario(context, payload) {
-      api.get(`/usuario/${payload}`).then((response) => {
+      return api.get(`/usuario/${payload}`).then((response) => {
         context.commit("UPDATE_USUARIO", response.data); //depois que pega o usuário e logo faz-se o update no login, entao sao duas mutações de uma vez só
         context.commit("UPDATE_LOGIN", true);
       });
+    },
+    criarUsuario(context, payload) {
+      //quando estiver postando a informação ele irá atualizar o usuário com o email e vai criar a postagem final
+      context.commit("UPDATE_USUARIO", { id: payload.email });
+      return api.post(`/usuario`, payload);
     },
   },
   modules: {},
