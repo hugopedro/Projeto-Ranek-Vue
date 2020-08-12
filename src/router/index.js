@@ -4,6 +4,10 @@ import Home from "../views/Home.vue";
 import Produto from "../views/Produto.vue";
 import Login from "../views/Login.vue";
 import Usuario from "../views/usuario/Usuario.vue";
+import UsuarioProdutos from "../views/usuario/UsuarioProdutos.vue";
+import UsuarioEditar from "../views/usuario/UsuarioEditar.vue";
+import UsuarioCompras from "../views/usuario/UsuarioCompras.vue";
+import UsuarioVendas from "../views/usuario/UsuarioVendas.vue";
 
 Vue.use(VueRouter);
 
@@ -32,8 +36,29 @@ const routes = [
     // Criando uma página nova!
     // Já que vai passar o id tem que ter props, para passá-lo como propiedade
     path: "/usuario",
-    name: "usuario",
     component: Usuario,
+    children: [
+      {
+        path: "", //nada porque quando o usuário entrar vai ser só a pagina do usuário mesmo
+        name: "usuario", //já que deve-se por o nome aqui pode apagar o de lá encima
+        component: UsuarioProdutos,
+      },
+      {
+        path: "compras",
+        name: "compras",
+        component: UsuarioCompras,
+      },
+      {
+        path: "vendas",
+        name: "vendas",
+        component: UsuarioVendas,
+      },
+      {
+        path: "editar",
+        name: "usuario-editar",
+        component: UsuarioEditar,
+      },
+    ],
   },
 ];
 

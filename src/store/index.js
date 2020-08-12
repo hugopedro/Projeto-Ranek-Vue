@@ -45,6 +45,24 @@ export default new Vuex.Store({
       context.commit("UPDATE_USUARIO", { id: payload.email });
       return api.post(`/usuario`, payload);
     },
+    deslogarUsuario(context) {
+      // ao desligar faz-se o update de todos os atributos(id, nome, email... para vazio), depois muda o login para false
+      // e tambem remover o token de cadastro, entao essas coisas irão alterar o state, portanto:
+      context.commit("UPDATE_USUARIO", {
+        id: "",
+        nome: "",
+        email: "",
+        senha: "",
+        cep: "",
+        rua: "",
+        numero: "",
+        bairro: "",
+        cidade: "",
+        estado: "",
+      });
+      context.commit("UPDATE_LOGIN", false);
+      //após isso é necessário fazer o commit, então vá em Usuario na função deslogar no method deslogar()
+    },
   },
   modules: {},
 });
