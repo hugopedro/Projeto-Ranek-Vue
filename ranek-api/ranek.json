@@ -479,6 +479,22 @@
       "vendido": "false",
       "descricao": "Esse é um novo tablet.",
       "fotos": null
+    },
+    {
+      "nome": "Produtão",
+      "preco": "600",
+      "descricao": "O produtão",
+      "fotos": null,
+      "usuario_id": "maria@gmail.com",
+      "id": "feeUNFY"
+    },
+    {
+      "nome": "Produtão 22",
+      "preco": "600",
+      "descricao": "O produtão",
+      "fotos": null,
+      "usuario_id": "maria@gmail.com",
+      "id": "yR153qU"
     }
   ]
 }
