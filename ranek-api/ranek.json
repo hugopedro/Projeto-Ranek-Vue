@@ -65,6 +65,28 @@
         "estado": "SP"
       },
       "id": 3
+    },
+    {
+      "comprador_id": "andre@origamid.com",
+      "vendedor_id": "andre@origamid.com",
+      "produto": {
+        "id": "smartphone",
+        "nome": "Smartphone",
+        "usuario_id": "andre@origamid.com",
+        "preco": "1999",
+        "vendido": "false",
+        "descricao": "Esse é um novo smartphone.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "12345678",
+        "rua": "Rua Ali Perto",
+        "numero": "150",
+        "bairro": "Esse Mesmo",
+        "cidade": "Rio de Janeiro",
+        "estado": "RJ"
+      },
+      "id": 4
     }
   ],
   "usuario": [
