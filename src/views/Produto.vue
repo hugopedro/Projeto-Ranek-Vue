@@ -12,9 +12,15 @@
         <h1>{{produto.nome}}</h1>
         <p class="preco">{{produto.preco | numeroPreco}}</p>
         <p class="descricao">{{produto.descricao}}</p>
-        <button class="btn" v-if="produto.vendido === 'false'">Comprar</button>
+        <transition mode="out-in" v-if="produto.vendido === 'false'">
+          <button class="btn" v-if="!finalizar" @click="finalizar=true">Comprar</button> <!-- Só vai mostrar se finalizar for false, quando for verdadeiro o Comprar sai e entra o FinalizarCompra-->
+          <!-- O botão só vai abrir o formulário de finalizar compra -->
+          <FinalizarCompra v-else :produto="produto"/> <!-- Para esse formulário é necessário passar o produto como propiedade, 
+          pois essa informação tem que passar para a compra, quando estiver postando a informação no BD tem que passar 3 coisas, a 
+          informação do produto, a informação do comprador e a do vendedor-->
+        </transition>
         <!-- Comprar só aparece se o produto não foi vendido-->
-        <button v-else class="btn" disabled>Produto Vendiro</button>
+        <button v-else class="btn" disabled>Produto Vendido</button>
       </div>
     </div>
     <PaginaCarregando v-else />
@@ -28,13 +34,16 @@ eu vou começar a usar o store.js muito quando eu estiver tratando do login, poi
 é preciso saber quem é o usuário, já o produto não, produto é só na página de produto */
 
 import { api } from "@/services.js";
+import FinalizarCompra from "@/components/FinalizarCompra.vue";
 
 export default {
   name: "Produtos",
   props: ["id"],
+  components: { FinalizarCompra },
   data() {
     return {
       produto: null,
+      finalizar: false, //então será trocado o finalizar pra true ou false ao clicar no botão
     };
   },
   methods: {

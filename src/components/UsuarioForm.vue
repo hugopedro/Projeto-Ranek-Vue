@@ -1,11 +1,13 @@
 <template>
   <form>
-    <label for="nome">Nome</label>
-    <input id="nome" name="nome" type="text" v-model="nome" />
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" v-model="email" />
-    <label for="senha">Senha</label>
-    <input id="senha" name="senha" type="password" v-model="senha" />
+    <div class="usuario" v-if="mostrarDadosLogin">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" v-model="nome" />
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" v-model="email" />
+      <label for="senha">Senha</label>
+      <input id="senha" name="senha" type="password" v-model="senha" />
+    </div>
     <label for="cep">Cep</label>
     <input id="cep" name="cep" type="text" v-model="cep" @keyup="preencherCep" />
     <label for="rua">Rua</label>
@@ -45,6 +47,11 @@ export default {
       base: "usuario",
       mutation: "UPDATE_USUARIO",
     }),
+    mostrarDadosLogin() {
+      //se o usuário não estiver logado ou estiver na pagina UsuarioEditar mostra apenas nome,email e senha
+      return (!this.$store.state.login || (this.$route.name === 'usuario-editar'))
+      //entao tem que mudar os campos lá encima e por dentro de uma div pra funcionar
+    }
   },
   methods: {
     preencherCep() {
@@ -64,10 +71,15 @@ export default {
 
 <style scoped>
 /*Se não por style SCOPED vai alterar o design de outros buttons, e aí vai bugar tudo então é muito importante*/
-form {
+form,
+.usuario {
   display: grid;
   grid-template-columns: 80px 1fr;
   align-items: center;
+}
+
+.usuario {
+  grid-column: 1 / 3; /* vai da primeira coluna até a terceira, isso é necessário para não ficar zoado */
 }
 
 .button {
